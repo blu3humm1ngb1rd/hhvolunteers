@@ -10,6 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_04_191527) do
+ActiveRecord::Schema.define(version: 2020_08_04_230605) do
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.integer "project_id"
+    t.boolean "completed", default: false
+    t.boolean "assigned", default: false
+  end
 
 end
