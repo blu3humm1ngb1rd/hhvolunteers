@@ -1,2 +1,5 @@
-class UsersController < ApplicationController
+class VolunteersController < ApplicationController
+  get '/' do
+    erb :"volunteers/index"
+  end
 end
