@@ -8,6 +8,8 @@ class VolunteersController < ApplicationController
   end
 
   post '/login' do
+    @user = Volunteer.find_by(email: params[:email])
+    @user.authenticate(params[:password])
   end
 
   get '/signup' do
