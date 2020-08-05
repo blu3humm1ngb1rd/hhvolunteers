@@ -9,7 +9,13 @@ class VolunteersController < ApplicationController
 
   post '/login' do
     @user = Volunteer.find_by(email: params[:email])
-    @user.authenticate(params[:password])
+
+    if @user.authenticate(params[:password])
+
+    else
+      'Please check your email and password and try again'
+      redirect '/login'
+    end
   end
 
   get '/signup' do
