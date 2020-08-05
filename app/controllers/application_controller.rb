@@ -9,10 +9,12 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-    def logged_in?; end
+    def logged_in?
+      !!current_user
+    end
 
     def current_user
-      Volunteer.find_by(id: session[:volunteer_id])
+      @current_user ||= Volunteer.find_by(id: session[:volunteer_id])
     end
   end
 
