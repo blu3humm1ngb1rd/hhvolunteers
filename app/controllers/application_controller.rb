@@ -8,6 +8,14 @@ class ApplicationController < Sinatra::Base
     set :session_secret, 'the_secret'
   end
 
+  helpers do
+    def logged_in?; end
+
+    def current_user
+      Volunteer.find_by(id: session[:volunteer_id])
+    end
+  end
+
   get '/' do
     erb :welcome
   end
