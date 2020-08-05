@@ -19,19 +19,21 @@ class VolunteersController < ApplicationController
     end
   end
 
-  # post '/volunteers' do
-  #   #binding.pry
-  #   if params[:firstname] != "" && params[:email] != "" && params[:password] != ''
-  #   @volunteer = Volunteer.create(:firstname params[:firstname], :lastname params[:lastname], :pronouns params[:pronouns],:email params[:email], :training params[:training], :qtlgbt params[:qtlgbt],:password params[:password], :bipoc params[:bipoc])
-  #   session[:volunteer_id] = @volunteer.id
-  #   redirect "volunteers/#{@volunteer.id}"
-  #   else
-  #     'We need at least your first name, email, and a password for registration.'
-  #     redirect '/signup'
-  #   end
-  # end
+  post '/volunteers' do
+    # binding.pry
+    if params[:firstname] != '' && params[:email] != '' && params[:password] != ''
+      @volunteer = Volunteer.create(params)
+      session[:volunteer_id] = @volunteer.id
+      redirect "volunteers/#{@volunteer.id}"
+    else
+      'We need at least your first name, email, and a password for registration.'
+      redirect '/signup'
+    end
+  end
 
   get '/volunteers/:id' do
+    @volunteer = Volunteer.find_by(id: params[:id])
+
     erb :'volunteers/show'
   end
 
@@ -43,3 +45,5 @@ class VolunteersController < ApplicationController
     erb :'volunteers/show'
   end
 end
+
+# (:firstname params[:firstname], :lastname params[:lastname], :pronouns params[:pronouns],:email params[:email], :training params[:training], :qtlgbt params[:qtlgbt],:password params[:password], :bipoc params[:bipoc])
