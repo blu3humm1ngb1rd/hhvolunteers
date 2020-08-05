@@ -33,7 +33,6 @@ class VolunteersController < ApplicationController
 
   get '/volunteers/:id' do
     @volunteer = Volunteer.find_by(id: params[:id])
-
     erb :'volunteers/show'
   end
 
@@ -43,6 +42,11 @@ class VolunteersController < ApplicationController
 
   post '/signup' do
     erb :'volunteers/show'
+  end
+
+  get '/logout' do
+    session.clear
+    redirect '/'
   end
 end
 
