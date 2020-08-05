@@ -19,11 +19,21 @@ class VolunteersController < ApplicationController
     end
   end
 
+  post '/volunteers' do
+    #binding.pry
+    @volunteer = Volunteer.create(:firstname params[:firstname], :lastname params[:lastname], :pronouns params[:pronouns],:email params[:email], :training params[:training], :qtlgbt params[:qtlgbt],:password params[:password], :bipoc params[:bipoc])
+    session[:volunteer_id] = @volunteer.id 
+    redirect "volunteers/#{@volunteer.id}"
+  end
+
   get '/volunteers/:id' do
     "volunteeer's specific homepage"
   end
 
   get '/signup' do
     erb :signup
+  end
+
+  post '/signup' do
   end
 end
