@@ -1,0 +1,36 @@
+volunteers table - authentication setup
+  -info attributes
+
+projects
+ -attributes to describe the project itself
+
+ neither have foreign keys ^
+
+ volunteer_projects
+  -volunteer_id
+  -project_id
+  -num_hours
+  -role
+
+NON OPTIONAL CRUD
+
+volunteers should be able to:
+- CREATE - sign up for a project (volunteer_project creation)
+- READ - see which projects they've signed up for (volunteer has_many projects through volunteer_projects)
+- UPDATE - update number of hours on a project (or role or something else) - NOT the project itself
+- DESTROY - remove a signup so they aren't volunteering for a project anymore - NOT delete projects
+
+authorization
+ - can't sign up or remove other volunteers from projects
+ - can't edit hours/role/whatever on someone else's volunteer_project
+ 
+
+ restful conventions to follow
+
+ get '/projects' should show all projects
+ get '/projects/:id' should show one project and its info. optionally, list all the volunteers associated
+ get '/volunteers/:id' should show info for one volunteer. show list of projects associated with that volunteer
+ to volunteer you probably see a form on the project show page (get '/projects/:id')
+ that form would have an action '/volunteer_projects' with method "post"
+ at that route you create a volunteer_project with that current_user id and project id
+ redirect to the volunteer show page, or redirect to '/volunteer_projects/:id'

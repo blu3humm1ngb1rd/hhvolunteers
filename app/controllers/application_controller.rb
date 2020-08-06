@@ -16,6 +16,10 @@ class ApplicationController < Sinatra::Base
     def current_user
       @current_user ||= Volunteer.find_by(id: session[:volunteer_id])
     end
+
+    def redirect_if_logged_out
+      redirect to '/' unless logged_in?
+    end
   end
 
   get '/' do
