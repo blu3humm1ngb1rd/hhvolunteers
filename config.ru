@@ -4,3 +4,4 @@ require './config/environment'
 
 run ApplicationController
 use VolunteersController
+use ProjectsController
