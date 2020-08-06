@@ -1,1 +1,9 @@
 <h2>Here are all the projects we are working on</h2>
+
+<%@project.each do |project|%>
+<%= project.name %>
+<br>
+<%= project.role %>
+<br>
+<br>
+<%end %>
