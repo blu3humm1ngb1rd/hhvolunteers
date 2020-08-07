@@ -1,11 +1,12 @@
 <h2>Here are all the projects we are working on</h2>
 
-<%@project.each do |project|%>
+<%@projects.each do |project|%>
+
 <%= project.name %>
 <br>
 <%= project.role %>
 <br>
-<form method='get' action='projects/#{project.id}'>
+<form method='post' action="projects/<%= project.id %>">
  <input type='submit' value='Sign Up'>
  </form>
 <br>
@@ -16,6 +17,10 @@
  - submit 
  - get/post route 
 
- <form method='get' action='projects/#{project.id}'>
+  <form method='post' action="projects/#{current_user.id}">
  <input type='submit' value='Sign Up'>
  </form>
+
+ <h2>Create a New Project</h2>
+ <form method='post' action='project/new'>
+ <>
