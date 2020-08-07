@@ -1,21 +1,10 @@
-<h2>Here are all the projects we are working on</h2>
+<h1><%= @projects.name %> Dashboard </h1>
 
-<%@project.each do |project|%>
-<%= project.name %>
+<h3>Current Status</h3>
+Role: <%= @projects.role %>
 <br>
-<%= project.role %>
+Assinged: <%= @projects.assigned %>
 <br>
-<form method='get' action='projects/#{project.id}'>
- <input type='submit' value='Sign Up'>
- </form>
+Duration of event: <%= @projects.number_of_hours %> hours
 <br>
-<%end %>
-
-#Sign Up for Projects 
- - form 
- - submit 
- - get/post route 
-
- <form method='get' action='projects/#{project.id}'>
- <input type='submit' value='Sign Up'>
- </form>
+Completed: <%= @projects.completed %>
