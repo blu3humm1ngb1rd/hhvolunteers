@@ -6,7 +6,10 @@ class ProjectsController < ApplicationController
   end
 
   post '/projects/new' do
-    binding.pry
+    project = Project.new(params)
+    project.save
+    @projects = Project.all
+    erb :'/projects/index'
   end
 
   post '/projects/:id' do
