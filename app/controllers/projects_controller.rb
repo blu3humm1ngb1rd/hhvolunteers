@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
     project = Project.new(params)
     project.save
     @projects = Project.all
-    erb :'/projects/index'
+    redirect :'/projects/index'
   end
 
   post '/projects/:id' do
