@@ -17,10 +17,23 @@
  - submit 
  - get/post route 
 
-  <form method='post' action="projects/#{current_user.id}">
- <input type='submit' value='Sign Up'>
- </form>
+  
 
  <h2>Create a New Project</h2>
- <form method='post' action='project/new'>
+ <form action='projects/new' method='post'>
+ <>
+<label for='name'>Project Name: </label>
+<input type='text' name='name' value= ''/>
+<br>
+<label for='role'>Volunteer Role: </label>
+<input type='text' name='role' value= ''/>
+<br>
+<label for='number_of_hours'>Duration (in hours): </label>
+<input type='text' name='number_of_hours' value= ''/>
+<br>
+<label for='assigned'>Assigned: </label>
+<input type='text' name='assigned' value= ''/>
+<br>
+<input type='submit' value='Create'>
+</form>
  <>
