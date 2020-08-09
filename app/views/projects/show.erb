@@ -1,12 +1,24 @@
-<h1><%= @projects.name %> Dashboard </h1>
+<h2>Project Dashboard</h2>
+<br>
+<h2><%= @projects.name %> </h2>
 
 <h3>Current Status</h3>
+Created By <%= current_user.firstname%>
+<br>
+Date: <%= @projects.date%>
+<br>
+Time: <%= @projects.time%>
+<br>
 Role: <%= @projects.role %>
 <br>
-Assinged: <%= @projects.assigned %>
+Assigned: <%= @projects.assigned %>
 <br>
 Duration of event: <%= @projects.number_of_hours %> hours
 <br>
 Completed: <%= @projects.completed %>
 <br>
+
+Edit Link 
+<a href="/projects/<%=@projects.id%>/edit">Edit Project</a>
+Delete Link 
 
