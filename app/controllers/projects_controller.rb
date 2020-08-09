@@ -17,6 +17,7 @@ class ProjectsController < ApplicationController
       project.id = current_user.id
       project.save
       # @projects = Project.all
+      @volunteers = Volunteer.all
       redirect :"/projects/#{project.id}"
     else
       redirect :'/projects/new'
@@ -24,13 +25,19 @@ class ProjectsController < ApplicationController
   end
 
   get '/projects/:id' do
+    # binding.pry
     @projects = Project.find_by(id: params[:id])
     erb :'projects/show'
   end
 
-  # get '/projects/:id' do
-  #   binding.pry
-  #   @projects = Project.id
-  #   erb :'projects/show'
-  # end
+  post '/projects/:id' do
+    # binding.pry
+    @projects = Project.find_by(id: params[:id])
+
+    erb :'projects/show'
+  end
+
+  get '/projects/:id/edit' do
+    erb :'/projects/edit'
+  end
 end
