@@ -38,6 +38,7 @@ class ProjectsController < ApplicationController
   end
 
   get '/projects/:id/edit' do
+    @projects = Project.find(params[:id])
     erb :'/projects/edit'
   end
 end
