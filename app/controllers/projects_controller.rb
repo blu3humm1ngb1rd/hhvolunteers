@@ -5,11 +5,15 @@ class ProjectsController < ApplicationController
     erb :'projects/index'
   end
 
-  post '/projects/new' do
+  get '/projects/new' do
+    erb :'/projects/new'
+  end
+
+  post '/projects' do
     project = Project.new(params)
     project.save
     @projects = Project.all
-    redirect :'/projects/index'
+    redirect :'/projects'
   end
 
   post '/projects/:id' do
