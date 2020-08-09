@@ -1,3 +1,4 @@
 class VolunteerProject < ActiveRecord::Base
-  has_many :projects, through: :volunteers
+  belongs_to :projects
+  belongs_to :volunteers
 end

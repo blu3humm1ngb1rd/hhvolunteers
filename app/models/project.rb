@@ -1,4 +1,4 @@
 class Project < ActiveRecord::Base
-  belongs_to :volunteer
-  has_many :volunteers
+  has_many :projects
+  has_many :volunteers, through: :volunteerprojects
 end
