@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_140217) do
+ActiveRecord::Schema.define(version: 2020_08_09_003421) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2020_08_06_140217) do
     t.boolean "assigned", default: false
     t.string "role"
     t.string "number_of_hours"
+    t.string "date"
+    t.string "time"
   end
 
   create_table "volunteers", force: :cascade do |t|

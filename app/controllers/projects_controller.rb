@@ -10,10 +10,15 @@ class ProjectsController < ApplicationController
   end
 
   post '/projects' do
-    project = Project.new(params)
-    project.save
-    @projects = Project.all
-    redirect :'/projects'
+    redirect '/' unless logged_in?
+    if params[:name] && params[:role] && params[:date] != ''
+      project = Project.new(params)
+      project.save
+      @projects = Project.all
+      redirect :'/projects'
+    else
+      redirect :'/projects/new'
+    end
   end
 
   post '/projects/:id' do
