@@ -18,7 +18,8 @@
       <%if current_user %>
       <a href='/logout'>Logout</a>
       <a href='/projects'>Projects</a>
-      <a href='/projects/new'%>New Project</a>
+      <a href='/projects/new'>New Project</a>
+      <a href="volunteers/<%= current_user.id %>">Home</a>
       <%end %>
     </div>
     <div class="wrapper">
