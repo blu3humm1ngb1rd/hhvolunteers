@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
     redirect_if_logged_out
     if params[:name] && params[:role] && params[:date] != ''
       # binding.pry
-      project = Project.new(name: params[:name], completed: params[:completed], assigned: params[:assigned], role: params[:role], number_of_hours: params[:number_of_hours], date: params[:date], time: params[:time])
+      project = Project.new(volunteer_id: params[:volunteer_id], name: params[:name], completed: params[:completed], assigned: params[:assigned], role: params[:role], number_of_hours: params[:number_of_hours], date: params[:date], time: params[:time])
       project.id = current_user.id
       project.save
       # @projects = Project.all
@@ -49,9 +49,17 @@ class ProjectsController < ApplicationController
 
   patch '/projects/:id' do
     set_project
-    params.delete(:_method)
-    @projects.update(params)
-    redirect "/projects/#{@projects.id}"
+    if logged_in?
+      if params[:name] != '' && params[:date] != ''
+        params.delete(:_method)
+        @projects.update(params)
+        redirect "/projects/#{@projects.id}"
+      else
+        redirect "/projects/#{@projects.id}"
+      end
+    else
+      redirect '/'
+    end
   end
 
   delete '/projects/:id' do
