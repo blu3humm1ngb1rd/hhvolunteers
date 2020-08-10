@@ -3,8 +3,6 @@
 <h2><%= @projects.name %> </h2>
 
 <h3>Current Status</h3>
-Created By <%= current_user.firstname%>
-<br>
 Date: <%= @projects.date%>
 <br>
 Time: <%= @projects.time%>
@@ -18,7 +16,10 @@ Duration of event: <%= @projects.number_of_hours %> hours
 Completed: <%= @projects.completed %>
 <br>
 
-Edit Link 
+
+<%if current_user.id == @projects.id%>
 <a href="/projects/<%=@projects.id%>/edit">Edit Project</a>
-Delete Link 
+<br>
+<br>
+<%end %>
 
