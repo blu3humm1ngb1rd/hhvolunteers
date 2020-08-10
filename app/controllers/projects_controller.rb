@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   get '/projects' do
+    redirect_if_logged_out
     @projects = Project.all
     erb :'projects/index'
   end
@@ -9,7 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   post '/projects' do
-    redirect '/' unless logged_in?
+    redirect_if_logged_out
     if params[:name] && params[:role] && params[:date] != ''
       # binding.pry
       project = Project.new(name: params[:name], completed: params[:completed], assigned: params[:assigned], role: params[:role], number_of_hours: params[:number_of_hours], date: params[:date], time: params[:time])

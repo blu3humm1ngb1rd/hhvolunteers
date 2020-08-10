@@ -16,9 +16,13 @@ NON OPTIONAL CRUD
 
 volunteers should be able to:
 - CREATE - sign up for a project (volunteer_project creation)
+--------volutneers can create new projects 
 - READ - see which projects they've signed up for (volunteer has_many projects through volunteer_projects)
+--------volutneers can see all projects 
 - UPDATE - update number of hours on a project (or role or something else) - NOT the project itself
+--------volunteers can edit their own project they made; can NOT edit other's projects 
 - DESTROY - remove a signup so they aren't volunteering for a project anymore - NOT delete projects
+--------volutneer can destroy their own projects, can NOT destroy other's projects 
 
 authorization
  - can't sign up or remove other volunteers from projects
