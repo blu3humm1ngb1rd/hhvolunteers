@@ -55,8 +55,11 @@ class ProjectsController < ApplicationController
 
   delete '/projects/:id' do
     set_project
-    @project.destroy
+    # if authorized user
+    @projects.destroy
     redirect '/projects'
+    # else
+    # redirect to '/projects'
   end
 
   private
