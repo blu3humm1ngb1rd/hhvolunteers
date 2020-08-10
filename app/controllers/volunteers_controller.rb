@@ -24,8 +24,10 @@ class VolunteersController < ApplicationController
   post '/volunteers' do
     if params[:firstname] != '' && params[:email] != '' && params[:lastname] != ''
       @volunteer = Volunteer.create(firstname: params[:firstname], lastname: params[:lastname], pronouns: params[:pronouns], email: params[:email], training: params[:training], qtlgbt: params[:qtlgbt], password: params[:password], bipoc: params[:bipoc])
-      # session[:volunteer_id] = @volunteer.id
+      session[:volunteer_id] = @volunteer.id
       redirect "/volunteers/#{@volunteer.id}"
+    else
+      redirect '/signup'
     end
   end
 
