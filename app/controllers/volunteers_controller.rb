@@ -1,6 +1,10 @@
 class VolunteersController < ApplicationController
   get '/' do
-    erb :"volunteers/index"
+    if logged_in?
+      redirect "/volunteers/#{current_user.id}"
+    else
+      erb :"volunteers/index"
+    end
   end
 
   get '/login' do

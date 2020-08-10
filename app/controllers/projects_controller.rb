@@ -35,10 +35,12 @@ class ProjectsController < ApplicationController
   end
 
   get '/projects/:id/edit' do
+    set_project
     if logged_in?
-      if @projects.id == current_user
-        set_project
+      if @projects.id == current_user.id
         erb :'/projects/edit'
+      else
+        redirect :"/projects/#{@projects.id}"
       end
     else
       redirect '/'

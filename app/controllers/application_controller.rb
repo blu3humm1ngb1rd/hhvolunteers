@@ -8,6 +8,14 @@ class ApplicationController < Sinatra::Base
     set :session_secret, 'the_secret'
   end
 
+  get '/' do
+    if logged_in?
+      redirect "/volunteers/#{current_user.id}"
+    else
+      erb :welcome
+    end
+  end
+
   helpers do
     def logged_in?
       !!current_user
