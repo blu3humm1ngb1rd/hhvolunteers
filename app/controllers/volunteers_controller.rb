@@ -38,6 +38,8 @@ class VolunteersController < ApplicationController
   get '/volunteers/:id' do
     # redirect_if_logged_out
     @volunteer = Volunteer.find_by(id: params[:id])
+    @projects = @volunteer.created_projects
+    # binding.pry
     erb :'volunteers/show'
   end
 

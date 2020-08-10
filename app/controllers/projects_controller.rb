@@ -13,11 +13,13 @@ class ProjectsController < ApplicationController
     redirect_if_logged_out
     if params[:name] && params[:role] && params[:date] != ''
       # binding.pry
-      project = Project.new(volunteer_id: params[:volunteer_id], name: params[:name], completed: params[:completed], assigned: params[:assigned], role: params[:role], number_of_hours: params[:number_of_hours], date: params[:date], time: params[:time])
-      project.id = current_user.id
+      project = Project.new(volunteer_id: current_user, name: params[:name], completed: params[:completed], assigned: params[:assigned], role: params[:role], number_of_hours: params[:number_of_hours], date: params[:date], time: params[:time])
+
+      project.volunteer_id = current_user.id
       project.save
+      # binding.pry
       # @projects = Project.all
-      @volunteers = current_user
+      # @volunteers = current_user
       redirect :"/projects/#{project.id}"
     else
       redirect :'/projects/new'
@@ -26,6 +28,8 @@ class ProjectsController < ApplicationController
 
   get '/projects/:id' do
     set_project
+    # binding.pry
+    # @volunteer = Volunteer.all.find(params[:current_user])
     erb :'projects/show'
   end
 
@@ -37,7 +41,7 @@ class ProjectsController < ApplicationController
   get '/projects/:id/edit' do
     set_project
     if logged_in?
-      if @projects.id == current_user.id
+      if @projects.volunteer_id == current_user.id
         erb :'/projects/edit'
       else
         redirect :"/projects/#{@projects.id}"

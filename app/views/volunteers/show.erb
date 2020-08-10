@@ -1,6 +1,6 @@
 <h1>This is the volunteer's specific home page </h1>
 
-<h3>Welcome <%= @volunteer.firstname %></h3>
+<h3>Welcome <%= @volunteer.firstname %>!</h3>
 <br>
 
 
@@ -12,8 +12,13 @@ Pronouns: <%= @volunteer.pronouns %>
 <br>
 Email: <%= @volunteer.email %>
 <br>
-
-##we want to show all of volunteer's projects here 
+<br>
+<h4>Your Projects:</h4>
+<%@projects.each do |project|%>
+Name: <%=project.name%> <br>
+Date: <%=project.date%> <br>
+<br>
+<%end%>
 
 <br>
 <br>
