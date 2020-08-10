@@ -54,6 +54,12 @@ class ProjectsController < ApplicationController
     redirect "/projects/#{@projects.id}"
   end
 
+  delete '/projects/:id' do
+    set_project
+    @project.destroy
+    redirect '/projects'
+  end
+
   private
 
   def set_project
