@@ -15,19 +15,18 @@ Email: <%= @volunteer.email %><br>
 <br>
 <h4>Your Projects:</h4>
 <br>
+<% unless @projects.empty? %>
 <%@projects.each do |project|%>
-<%if %>
-<% project.name != ''%>
 Name: <%=project.name%> <br>
 Date: <%=project.date%> <br>
 <form method='post' action="/projects/<%= project.id %>">
  <input type='submit' value='More Info'>
  </form>
 <br>
+
+<%end%>
 <%else%>
  There are no projects to display. 
 <%end%>
-<%end%>
-
 <br>
 <br>
