@@ -3,7 +3,7 @@
 <h2><%= @projects.name %> </h2>
 
 <h3>Current Status</h3>
-Made by: <%= %>
+
 Date: <%= @projects.date%>
 <br>
 Time: <%= @projects.time%>
@@ -19,6 +19,7 @@ Completed: <%= @projects.completed %>
 
 
 <%if current_user.id == @projects.volunteer_id%>
+<br>
 <a href="/projects/<%=@projects.id%>/edit">Edit Project</a>
 <br>
 <br>
