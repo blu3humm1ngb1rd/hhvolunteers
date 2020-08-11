@@ -1,24 +1,32 @@
-<h1>This is the volunteer's specific home page </h1>
 
-<h3>Welcome <%= @volunteer.firstname %>!</h3>
+
+<h2>Welcome <%= @volunteer.firstname %>!</h2>
 <br>
 
 
 
-First Name: <%= @volunteer.firstname %><br>
-Last Name: <%= @volunteer.lastname %>
+First Name: <%= @volunteer.firstname %><br><br>
+Last Name: <%= @volunteer.lastname %><br>
 <br>
-Pronouns: <%= @volunteer.pronouns %>
+Pronouns: <%= @volunteer.pronouns %><br>
 <br>
-Email: <%= @volunteer.email %>
+Email: <%= @volunteer.email %><br>
 <br>
 <br>
 <h4>Your Projects:</h4>
+<br>
+<% unless @projects.empty? %>
 <%@projects.each do |project|%>
 Name: <%=project.name%> <br>
 Date: <%=project.date%> <br>
+<form method='post' action="/projects/<%= project.id %>">
+ <input type='submit' value='More Info'>
+ </form>
 <br>
-<%end%>
 
+<%end%>
+<%else%>
+ There are no projects to display. 
+<%end%>
 <br>
 <br>

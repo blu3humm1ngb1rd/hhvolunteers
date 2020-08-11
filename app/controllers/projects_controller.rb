@@ -38,6 +38,10 @@ class ProjectsController < ApplicationController
     erb :'projects/show'
   end
 
+  get '/projects/volunteers/:id' do
+    redirect :"volunteers/#{current_user.id}"
+  end
+
   get '/projects/:id/edit' do
     set_project
     if logged_in?

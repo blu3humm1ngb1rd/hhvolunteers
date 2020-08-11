@@ -1,13 +1,15 @@
-<h1>login erb page</h1>
+<h2>Login</h2>
 <p><%= @volunteer.errors.full_messages.to_sentence %></p>
 <form class="" action="/login" method="post">
   <label for='email'>Email: </label>
   <input type='text' name='email' value=<%=@volunteer.email%>>
   <br>
+  <br>
   <label for='password'>Password: </label>
   <input type='password' name='password' value=''/>
+  <br>
   <br>
   <input type='submit' id='submit' value='Login'/>
 </form>
 <br>
-<a href='/'>Back</a>
+<a href='/'>Back to Main Page</a>

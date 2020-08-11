@@ -62,6 +62,3 @@ class VolunteersController < ApplicationController
     params.select { |k, _v| %i[firstname lastname pronouns email training qtlgbt password bipoc].include?(k) }
   end
 end
-
-# (firstname: params[:firstname], :lastname params[:lastname], :pronouns params[:pronouns],:email params[:email], :training params[:training], :qtlgbt params[:qtlgbt],:password params[:password], :bipoc params[:bipoc])
-# move colon to end of word
