@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
-  has_many :projects
+  has_many :volunteer_projects
   has_many :volunteers, through: :volunteer_projects
+  belongs_to :creator, class_name: 'Volunteer', foreign_key: 'volunteer_id'
 end
