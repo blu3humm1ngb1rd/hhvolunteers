@@ -12,14 +12,10 @@ class ProjectsController < ApplicationController
   post '/projects' do
     redirect_if_logged_out
     if params[:name] && params[:role] && params[:date] != ''
-      # binding.pry
-      project = Project.new(volunteer_id: current_user, name: params[:name], completed: params[:completed], assigned: params[:assigned], role: params[:role], number_of_hours: params[:number_of_hours], date: params[:date], time: params[:time])
 
-      project.volunteer_id = current_user.id
+      project = current_user.created_projects.new(name: params[:name], completed: params[:completed], assigned: params[:assigned], role: params[:role], number_of_hours: params[:number_of_hours], date: params[:date], time: params[:time])
+
       project.save
-      # binding.pry
-      # @projects = Project.all
-      # @volunteers = current_user
       redirect :"/projects/#{project.id}"
     else
       redirect :'/projects/new'
@@ -45,10 +41,10 @@ class ProjectsController < ApplicationController
   get '/projects/:id/edit' do
     set_project
     if logged_in?
-      if @projects.volunteer_id == current_user.id
+      if @project.volunteer_id == current_user.id
         erb :'/projects/edit'
       else
-        redirect :"/projects/#{@projects.id}"
+        redirect :"/projects/#{@project.id}"
       end
     else
       redirect '/'
@@ -57,13 +53,13 @@ class ProjectsController < ApplicationController
 
   patch '/projects/:id' do
     set_project
-    if logged_in?
+    if logged_in? && @project.creator == current_user
       if params[:name] != '' && params[:date] != ''
         params.delete(:_method)
-        @projects.update(params)
-        redirect "/projects/#{@projects.id}"
+        @project.update(params)
+        redirect "/projects/#{@project.id}"
       else
-        redirect "/projects/#{@projects.id}"
+        redirect "/projects/#{@project.id}"
       end
     else
       redirect '/'
@@ -72,16 +68,17 @@ class ProjectsController < ApplicationController
 
   delete '/projects/:id' do
     set_project
-    # if authorized user
-    @projects.destroy
-    redirect '/projects'
-    # else
-    # redirect to '/projects'
+    if current_user == @project.creator
+      @project.destroy
+      redirect '/projects'
+    else
+      redirect to '/projects'
+    end
   end
 
   private
 
   def set_project
-    @projects = Project.find(params[:id])
+    @project = Project.find(params[:id])
   end
 end
