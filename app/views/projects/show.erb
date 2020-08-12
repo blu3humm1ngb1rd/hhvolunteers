@@ -1,29 +1,29 @@
 <h2>Project Dashboard</h2>
 <br>
-<h2><%= @projects.name %> </h2>
+<h2><%= @project.name %> </h2>
 
 <h3>Current Status</h3>
 
-Date: <%= @projects.date%>
+Date: <%= @project.date%>
 <br>
-Time: <%= @projects.time%>
+Time: <%= @project.time%>
 <br>
-Role: <%= @projects.role %>
+Role: <%= @project.role %>
 <br>
-Assigned: <%= @projects.assigned %>
+Assigned: <%= @project.assigned %>
 <br>
-Duration of event: <%= @projects.number_of_hours %> hours
+Duration of event: <%= @project.number_of_hours %> hours
 <br>
-Completed: <%= @projects.completed %>
+Completed: <%= @project.completed %>
 <br>
 
 
-<%if current_user.id == @projects.volunteer_id%>
+<%if current_user.id == @project.volunteer_id%>
 <br>
-<a href="/projects/<%=@projects.id%>/edit">Edit Project</a>
+<a href="/projects/<%=@project.id%>/edit">Edit Project</a>
 <br>
 <br>
-<form method='post' action="/projects/<%=@projects.id%>">
+<form method='post' action="/projects/<%=@project.id%>">
 <input type='hidden' name='_method' value='DELETE' >
 <input type='submit' value='Delete Project'>
 <%end %>

@@ -1,27 +1,27 @@
 
  <h2>Edit Project</h2>
-  <form action="/projects/<%=@projects.id%>" method="post">
+  <form action="/projects/<%=@project.id%>" method="post">
 
    <input type="hidden" value="patch" name="_method">
  <
  <>
 <label for='name'>Project Name: </label>
-<input type='text' name='name' value= "<%= @projects.name%>"/>
+<input type='text' name='name' value= "<%= @project.name%>"/>
 <br>
 <label for='role'>Volunteer Role: </label>
-<input type='text' name='role' value= "<%= @projects.role%>"/>
+<input type='text' name='role' value= "<%= @project.role%>"/>
 <br>
 <label for='date'>Date: </label>
-<input type='text' name='date' value= "<%= @projects.date%>"/>
+<input type='text' name='date' value= "<%= @project.date%>"/>
 <br>
 <label for='time'>Time: </label>
-<input type='text' name='time' value= "<%= @projects.time%>"/>
+<input type='text' name='time' value= "<%= @project.time%>"/>
 <br>
 <label for='number_of_hours'>Duration (in hours): </label>
-<input type='text' name='number_of_hours' value= "<%= @projects.number_of_hours%>"/>
+<input type='text' name='number_of_hours' value= "<%= @project.number_of_hours%>"/>
 <br>
 <label for='assigned'>Assigned: </label>
-<input type='text' name='assigned' value= "<%= @projects.assigned%>"/>
+<input type='text' name='assigned' value= "<%= @project.assigned%>"/>
 <br>
 <input type='submit' value='Update Project'>
 </form>
