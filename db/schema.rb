@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_10_145127) do
+ActiveRecord::Schema.define(version: 2020_08_12_175937) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -26,11 +26,17 @@ ActiveRecord::Schema.define(version: 2020_08_10_145127) do
     t.integer "volunteer_id"
   end
 
+  create_table "volunteer_projects", force: :cascade do |t|
+    t.integer "volunteer_id"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "volunteers", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
     t.string "password_digest"
-    t.integer "volunteer_id"
     t.string "pronouns"
     t.string "email"
     t.boolean "training", default: false
@@ -38,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_08_10_145127) do
     t.boolean "bipoc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_volunteers_on_email", unique: true
   end
 
 end
