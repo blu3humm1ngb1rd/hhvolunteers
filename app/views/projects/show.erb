@@ -4,18 +4,23 @@
 
 <h3>Current Status</h3>
 
-Date: <%= @project.date%>
-<br>
-Time: <%= @project.time%>
-<br>
-Role: <%= @project.role %>
-<br>
-Assigned: <%= @project.assigned %>
-<br>
-Duration of event: <%= @project.number_of_hours %> hours
-<br>
-Completed: <%= @project.completed %>
-<br>
+<p>Created By: <%= @project.creator.firstname %></p>
+
+<p>Date: <%= @project.date%></p>
+
+<p>Time: <%= @project.time%></p>
+
+<p>Description: <%= @project.description%></p>
+
+<p>Role: <%= @project.role %></p>
+
+<p>Assigned: <%= @project.assigned %></p>
+
+<p>Duration of event: <%= @project.number_of_hours %> hours 
+
+<p>Completed: <%= @project.completed %>
+
+
 
 
 <%if current_user.id == @project.volunteer_id%>
