@@ -11,9 +11,14 @@
 <label for='role'>Volunteer Role: </label>
 <input type='text' name='role' value= "<%= @project.role%>"/>
 <br>
+
+
 <label for='date'>Date: </label>
-<input type='text' name='date' value= "<%= @project.date%>"/>
+<input type='date' id="date" name='date' value= "<%= @project.date%>" min='2020-08-01' max='2021-12-31'/>
 <br>
+
+
+
 <label for='time'>Time: </label>
 <input type='text' name='time' value= "<%= @project.time%>"/>
 <br>
