@@ -4,22 +4,43 @@
 
 <h3>Current Status</h3>
 
-<p>Created By: <%= @project.creator.firstname %></p>
+<div class='input-wrapper'>
+Created By: <%= @project.creator.firstname %>
 
-<p>Date: <%= @project.date%></p>
+<div class='input-wrapper'>
+<label for='project-date'>Project Date: </label>
+<%= @project.date%>
+</div>
 
-<p>Time: <%= @project.time%></p>
+<div class='input-wrapper'>
+<label for='project-date'>Time: </label>
+<%= @project.time%>
+</div>
 
-<p>Description: <%= @project.description%></p>
+<div class='input-wrapper'>
+<label for='project-description'>Project Description: </label>
+<%= @project.description%>
+</div>
 
-<p>Role: <%= @project.role %></p>
+<div class='input-wrapper'>
+<label for='project-role'>Project Role: </label>
+<%= @project.role %>
+</div>
 
-<p>Assigned: <%= @project.assigned %></p>
+<div class='input-wrapper'>
+<label for='project-assigned-volunteers'>Assigned Volunteers: </label>
+<%= @project.assigned %>
+</div>
 
-<p>Duration of event: <%= @project.number_of_hours %> hours 
+<div class='input-wrapper'>
+<label for='project-duration'>Duration (hours): </label>
+<%= @project.number_of_hours %>  
+</div>
 
-<p>Completed: <%= @project.completed %> <br>
-
+<div class='input-wrapper'>
+<label for='project-completed'>Completed: </label>
+ <%= @project.completed %> 
+</div>
 
 <% unless current_user.projects.include?(@project)%>
 <form method='post' action="/projects/<%= @project.id %>/signup">
