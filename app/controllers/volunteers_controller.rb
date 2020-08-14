@@ -40,7 +40,7 @@ class VolunteersController < ApplicationController
     # redirect_if_logged_out
     @volunteer = Volunteer.find_by(id: params[:id])
     @my_projects = @volunteer.created_projects
-    @other_projects = @volunteer.projects - @my_projects
+    @other_projects = @volunteer.projects
     # binding.pry
     erb :'volunteers/show'
   end

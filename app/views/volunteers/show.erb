@@ -19,9 +19,8 @@ Email: <%= @volunteer.email %><br>
 <%@my_projects.each do |project|%>
 Name: <%=project.name%> <br>
 Date: <%=project.date%> <br>
-<form method='post' action="/projects/<%= project.id %>">
- <input type='submit' value='More Info'>
- </form>
+
+<a href="/projects/<%= project.id %>">More Info</a>
 <br>
 
 <%end%>
@@ -37,8 +36,7 @@ Date: <%=project.date%> <br>
 <%@other_projects.each do |project|%>
 Name: <%=project.name%> <br>
 Date: <%=project.date%> <br>
-<form method='post' action="/projects/<%= project.id %>">
- <input type='submit' value='More Info'>
+<a href="/projects/<%= project.id %>">More Info</a>
  </form>
 <br>
 

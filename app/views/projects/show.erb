@@ -20,13 +20,13 @@
 
 <p>Completed: <%= @project.completed %> <br>
 
-<%if current_user.id != @project.volunteer_id %>
+
 <% unless current_user.projects.include?(@project)%>
 <form method='post' action="/projects/<%= @project.id %>/signup">
  <input type='submit' value='Sign Up'>
  </form>
 <%end %>
-<%end %>
+
 
 <%if current_user.id == @project.volunteer_id%>
 <br>
@@ -38,3 +38,8 @@
 <input type='submit' value='Delete Project'>
 <%end %>
 
+Current Volunteers: 
+
+<% @project.volunteers.each do |volunteer| %>
+    <%= volunteer.firstname %>
+<%end%>
