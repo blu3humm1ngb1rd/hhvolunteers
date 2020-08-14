@@ -18,12 +18,15 @@
 
 <p>Duration of event: <%= @project.number_of_hours %> hours 
 
-<p>Completed: <%= @project.completed %>
+<p>Completed: <%= @project.completed %> <br>
 
+<%if current_user.id != @project.volunteer_id %>
+<% unless current_user.projects.include?(@project)%>
 <form method='post' action="/projects/<%= @project.id %>/signup">
  <input type='submit' value='Sign Up'>
  </form>
-
+<%end %>
+<%end %>
 
 <%if current_user.id == @project.volunteer_id%>
 <br>

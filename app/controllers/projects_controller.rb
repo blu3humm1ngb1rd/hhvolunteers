@@ -24,8 +24,6 @@ class ProjectsController < ApplicationController
 
   get '/projects/:id' do
     set_project
-    # binding.pry
-    # @volunteer = Volunteer.all.find(params[:current_user])
     erb :'projects/show'
   end
 
