@@ -20,7 +20,9 @@
 
 <p>Completed: <%= @project.completed %>
 
-
+<form method='post' action="/projects/<%= @project.id %>/signup">
+ <input type='submit' value='Sign Up'>
+ </form>
 
 
 <%if current_user.id == @project.volunteer_id%>

@@ -51,6 +51,13 @@ class ProjectsController < ApplicationController
     end
   end
 
+  post '/projects/:id/signup' do
+    set_project
+    # binding.pry
+    current_user.projects << @project
+    redirect :"/volunteers/#{@current_user.id}"
+  end
+
   patch '/projects/:id' do
     set_project
     if logged_in? && @project.creator == current_user

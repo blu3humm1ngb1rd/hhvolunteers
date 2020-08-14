@@ -15,8 +15,26 @@ Email: <%= @volunteer.email %><br>
 <br>
 <h4>Your Projects:</h4>
 <br>
-<% unless @projects.empty? %>
-<%@projects.each do |project|%>
+<% unless @my_projects.empty?  %>
+<%@my_projects.each do |project|%>
+Name: <%=project.name%> <br>
+Date: <%=project.date%> <br>
+<form method='post' action="/projects/<%= project.id %>">
+ <input type='submit' value='More Info'>
+ </form>
+<br>
+
+<%end%>
+<%else%>
+ There are no projects to display. 
+<%end%>
+<br>
+<br>
+
+<h4>Projects You've Signed Up For:</h4>
+<br>
+<% unless @other_projects.empty?  %>
+<%@other_projects.each do |project|%>
 Name: <%=project.name%> <br>
 Date: <%=project.date%> <br>
 <form method='post' action="/projects/<%= project.id %>">
