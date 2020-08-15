@@ -4,7 +4,7 @@ Specs:
 
 - [x] Use Sinatra to build the app
 
-> I built the Happy Hummingbird Volutneer application.
+> I built the Happy Hummingbird Volutneer application using Sinatra.
 
 - [x] Use ActiveRecord for storing information in a database
 
@@ -24,7 +24,7 @@ Specs:
 
 - [x] Include user accounts with unique login attribute (username or email)
 
-> The Volunteer model `validates_uniqueness_of :email`.
+> The Volunteer model `validates_uniqueness_of :email`. Also, the params[:email] is set to .downcase; prior to this fix, a person could create two accoutns with one email. For example, one with email@email.com AND another account with EMAIL@email.com.
 
 - [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
 
@@ -32,13 +32,15 @@ Specs:
 
 - [x] Ensure that users can't modify content created by other users
 
-> I used an `if statement` to verify the `current_user.id == projects.volunteer.id` , if this verification failed, the current_user could not see nor have access to the edit page from the project created by another user.
+> I used an `if statement` to verify the `current_user.id == projects.volunteer.id` , if this verification failed, the current_user could not see nor have access to the edit page from the project created by another user. A user does have the ability to 'sign up' for a project they did not create, however they do not have edit permissions.
 
 - [x] Include user input validations
 
 > A volunteer can NOT register without at least a 1) first name, 2)email 3) password. Also, a volunteer can not update a project and leave either the name or date field blank. This update will not be accepted.
 
-- [ ] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+- [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+
+> I used the Sinatra-flash gem to display messages during the login process. If a volunteer already has an account, they will be redirected to login with the message, 'You already have an account. Please login.' The volunteer will get a message if they do not register with the minimum required amount of information, and redirected back to the signup page.
 
 - [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code.
 
