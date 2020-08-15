@@ -13,12 +13,12 @@ class VolunteersController < ApplicationController
   end
 
   post '/login' do
-    @volunteer = Volunteer.find_by(email: params[:email])
-    if @volunteer
-      if @volunteer.authenticate(params[:password])
-        session[:volunteer_id] = @volunteer.id
-        redirect "volunteers/#{@volunteer.id}"
-      end
+    @volunteer = Volunteer.find_by(email: params[:email].downcase)
+    if @volunteer&.authenticate(params[:password])
+      session[:volunteer_id] = @volunteer.id
+
+      redirect "volunteers/#{@volunteer.id}"
+
     end
     @volunteer ||= Volunteer.new(params)
     @volunteer.errors.add(:email, 'address and password do not match')
@@ -26,9 +26,13 @@ class VolunteersController < ApplicationController
   end
 
   post '/volunteers' do
-    redirect '/login' if Volunteer.find_by(email: params[:email])
+    if Volunteer.find_by(email: params[:email].downcase)
+      binding.pry
+      flash[:message] = 'You already have an account. Please login.'
+      redirect '/login'
+    end
     if params[:firstname] != '' && params[:email] != '' && params[:lastname] != '' && params[:password] != ''
-      @volunteer = Volunteer.create(firstname: params[:firstname], lastname: params[:lastname], pronouns: params[:pronouns], email: params[:email], training: params[:training], qtlgbt: params[:qtlgbt], password: params[:password], bipoc: params[:bipoc])
+      @volunteer = Volunteer.create(firstname: params[:firstname], lastname: params[:lastname], pronouns: params[:pronouns], email: params[:email].downcase, training: params[:training], qtlgbt: params[:qtlgbt], password: params[:password], bipoc: params[:bipoc])
       session[:volunteer_id] = @volunteer.id
       redirect "/volunteers/#{@volunteer.id}"
     else
