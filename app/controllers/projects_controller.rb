@@ -51,7 +51,6 @@ class ProjectsController < ApplicationController
 
   post '/projects/:id/signup' do
     set_project
-    # binding.pry
     current_user.projects << @project
     redirect :"/volunteers/#{@current_user.id}"
   end

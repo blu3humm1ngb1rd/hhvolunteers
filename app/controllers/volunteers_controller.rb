@@ -27,7 +27,6 @@ class VolunteersController < ApplicationController
 
   post '/volunteers' do
     if Volunteer.find_by(email: params[:email].downcase)
-      # binding.pry
       flash[:message] = 'You already have an account. Please login.'
       redirect '/login'
     end
@@ -42,11 +41,9 @@ class VolunteersController < ApplicationController
   end
 
   get '/volunteers/:id' do
-    # redirect_if_logged_out
     @volunteer = Volunteer.find_by(id: params[:id])
     @my_projects = @volunteer.created_projects
     @other_projects = @volunteer.projects
-    # binding.pry
     erb :'volunteers/show'
   end
 
