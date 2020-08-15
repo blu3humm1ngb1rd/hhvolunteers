@@ -27,7 +27,7 @@ class VolunteersController < ApplicationController
 
   post '/volunteers' do
     if Volunteer.find_by(email: params[:email].downcase)
-      binding.pry
+      # binding.pry
       flash[:message] = 'You already have an account. Please login.'
       redirect '/login'
     end
