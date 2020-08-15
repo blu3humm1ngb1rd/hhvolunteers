@@ -42,13 +42,26 @@ Created By: <%= @project.creator.firstname %>
  <%= @project.completed %> 
 </div>
 
+<div class='input-wrapper'>
 <% unless current_user.projects.include?(@project)%>
 <form method='post' action="/projects/<%= @project.id %>/signup">
  <input type='submit' value='Sign Up'>
  </form>
 <%end %>
+</div>
 
 
+<br>
+<div class='input-wrapper'>
+<label for='project-volunteers'>Current Volunteers: </label>
+<ul>
+<% @project.volunteers.each do |volunteer| %>
+   <li> <%= volunteer.firstname %></li>
+<%end%>
+</ul>
+</div>
+ 
+<div class='edit-wrapper'>
 <%if current_user.id == @project.volunteer_id%>
 <br>
 <a href="/projects/<%=@project.id%>/edit">Edit Project</a>
@@ -58,9 +71,4 @@ Created By: <%= @project.creator.firstname %>
 <input type='hidden' name='_method' value='DELETE' >
 <input type='submit' value='Delete Project'>
 <%end %>
-
-Current Volunteers: 
-
-<% @project.volunteers.each do |volunteer| %>
-    <%= volunteer.firstname %>
-<%end%>
+</div>
