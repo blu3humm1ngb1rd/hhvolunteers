@@ -36,6 +36,7 @@ class VolunteersController < ApplicationController
       session[:volunteer_id] = @volunteer.id
       redirect "/volunteers/#{@volunteer.id}"
     else
+      flash[:message] = 'You must provide your first and last name, email and create a password to register.'
       redirect '/signup'
     end
   end
