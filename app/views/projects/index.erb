@@ -2,13 +2,13 @@
 
 <%@projects.each do |project|%>
 
-<%= project.name %>
+<h4><%= project.name %></h4>
 <br>
 <%= project.date %>
 <br>
-<form method='post' action="projects/<%= project.id %>">
- <input type='submit' value='More Info'>
- </form>
+
+<a href="projects/<%= project.id %>" class="myButton">More Info</a>
+ 
 <br>
 <%end %>
 
