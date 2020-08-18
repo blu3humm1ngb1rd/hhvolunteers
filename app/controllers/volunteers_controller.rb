@@ -16,7 +16,7 @@ class VolunteersController < ApplicationController
     @volunteer = Volunteer.find_by(email: params[:email].downcase)
     if @volunteer&.authenticate(params[:password])
       session[:volunteer_id] = @volunteer.id
-
+      flash[:message] = 'Login Successful'
       redirect "volunteers/#{@volunteer.id}"
 
     end
@@ -27,15 +27,16 @@ class VolunteersController < ApplicationController
 
   post '/volunteers' do
     if Volunteer.find_by(email: params[:email].downcase)
-      flash[:message] = 'You already have an account. Please login.'
+      flash[:error] = 'You already have an account. Please login.'
       redirect '/login'
     end
     if params[:firstname] != '' && params[:email] != '' && params[:lastname] != '' && params[:password] != ''
       @volunteer = Volunteer.create(firstname: params[:firstname], lastname: params[:lastname], pronouns: params[:pronouns], email: params[:email].downcase, training: params[:training], qtlgbt: params[:qtlgbt], password: params[:password], bipoc: params[:bipoc])
       session[:volunteer_id] = @volunteer.id
+      flash[:message] = 'Signup Successful'
       redirect "/volunteers/#{@volunteer.id}"
     else
-      flash[:message] = 'You must provide your first and last name, email and create a password to register.'
+      flash[:error] = 'You must provide your first and last name, email and create a password to register.'
       redirect '/signup'
     end
   end

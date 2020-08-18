@@ -38,14 +38,12 @@ class ProjectsController < ApplicationController
 
   get '/projects/:id/edit' do
     set_project
-    if logged_in?
-      if @project.volunteer_id == current_user.id
-        erb :'/projects/edit'
-      else
-        redirect :"/projects/#{@project.id}"
-      end
+    redirect_if_logged_out
+    if @project.volunteer_id == current_user.id
+      erb :'/projects/edit'
     else
-      redirect '/'
+      flash[:error] = 'You can only edit projects you created.'
+      redirect :"/projects/#{@project.id}"
     end
   end
 

@@ -14,11 +14,14 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
     <body>
-    
+    <%= erb :nav %>
     <div class="wrapper">
-<%= erb :nav %>
+
 <% if flash[:message] %>
    <h3> <%= flash[:message]%> </h3>
+<%end%>
+<% if flash[:error] %>
+   <h3> <%= flash[:error]%> </h3>
 <%end%>
         <%= yield %>
 
