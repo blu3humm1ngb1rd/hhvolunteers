@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
       project = current_user.created_projects.new(name: params[:name], completed: params[:completed], assigned: params[:assigned], role: params[:role], number_of_hours: params[:number_of_hours], date: params[:date], time: params[:time])
 
       project.save
+      flash[:message] = 'Project successfully created'
       redirect :"/projects/#{project.id}"
     else
       redirect :'/projects/new'
@@ -59,6 +60,7 @@ class ProjectsController < ApplicationController
       if params[:name] != '' && params[:date] != ''
         params.delete(:_method)
         @project.update(params)
+        flash[:message] = 'Project has been updated.'
         redirect "/projects/#{@project.id}"
       else
         redirect "/projects/#{@project.id}"
@@ -72,6 +74,7 @@ class ProjectsController < ApplicationController
     set_project
     if current_user == @project.creator
       @project.destroy
+      flash[:message] = 'Project has been deleted.'
       redirect '/projects'
     else
       redirect to '/projects'
