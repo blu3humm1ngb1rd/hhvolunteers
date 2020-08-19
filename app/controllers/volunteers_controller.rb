@@ -30,13 +30,14 @@ class VolunteersController < ApplicationController
       flash[:error] = 'You already have an account. Please login.'
       redirect '/login'
     end
-    if params[:firstname] != '' && params[:email] != '' && params[:lastname] != '' && params[:password] != ''
-      @volunteer = Volunteer.create(firstname: params[:firstname], lastname: params[:lastname], pronouns: params[:pronouns], email: params[:email].downcase, training: params[:training], qtlgbt: params[:qtlgbt], password: params[:password], bipoc: params[:bipoc])
+
+    @volunteer = Volunteer.new(firstname: params[:firstname], lastname: params[:lastname], pronouns: params[:pronouns], email: params[:email].downcase, training: params[:training], qtlgbt: params[:qtlgbt], password: params[:password], bipoc: params[:bipoc])
+    if @volunteer.save
       session[:volunteer_id] = @volunteer.id
       flash[:message] = 'Signup Successful'
       redirect "/volunteers/#{@volunteer.id}"
     else
-      flash[:error] = 'You must provide your first and last name, email and create a password to register.'
+      flash[:error] = "Error: #{@volunteer.errors.full_messages.to_sentence}"
       redirect '/signup'
     end
   end
