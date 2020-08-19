@@ -60,10 +60,4 @@ class VolunteersController < ApplicationController
     session.clear
     redirect '/'
   end
-
-  private
-
-  def volunteer_params
-    params.select { |k, _v| %i[firstname lastname pronouns email training qtlgbt password bipoc].include?(k) }
-  end
 end

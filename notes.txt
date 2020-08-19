@@ -38,3 +38,9 @@ authorization
  that form would have an action '/volunteer_projects' with method "post"
  at that route you create a volunteer_project with that current_user id and project id
  redirect to the volunteer show page, or redirect to '/volunteer_projects/:id'
+
+private
+
+  def volunteer_params
+    params.select { |k, _v| %i[firstname lastname pronouns email training qtlgbt password bipoc].include?(k) }
+  end
