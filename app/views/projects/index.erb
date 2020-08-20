@@ -1,14 +1,14 @@
 <h2>Here are all the projects we are working on</h2>
 
 <%@projects.each do |project|%>
-
+<div>
 <h4><%= project.name %></h4>
-<br>
-<%= project.date %>
-<br>
+
+<%= project.date %><br>
+
 
 <a href="projects/<%= project.id %>" class="myButton">More Info</a>
- 
+</div> 
 <br>
 <%end %>
 
