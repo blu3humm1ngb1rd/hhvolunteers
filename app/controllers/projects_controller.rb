@@ -6,21 +6,20 @@ class ProjectsController < ApplicationController
   end
 
   get '/projects/new' do
+    @project = Project.new
     erb :'/projects/new'
   end
 
   post '/projects' do
     redirect_if_logged_out
-    if params[:name] && params[:role] && params[:date] != ''
-
-      project = current_user.created_projects.new(name: params[:name], completed: params[:completed], assigned: params[:assigned], role: params[:role], number_of_hours: params[:number_of_hours], date: params[:date], time: params[:time])
-
-      project.save
+    @project = current_user.created_projects.new(params)
+    if @project.save
       flash[:message] = 'Project successfully created'
-      redirect :"/projects/#{project.id}"
+      redirect :"/projects/#{@project.id}"
     else
-      redirect :'/projects/new'
-    end
+      flash.now[:error] = "Error: #{@project.errors.full_messages.to_sentence}"
+      erb :'/projects/new'
+  end
   end
 
   get '/projects/:id' do
@@ -56,15 +55,13 @@ class ProjectsController < ApplicationController
 
   patch '/projects/:id' do
     set_project
-    if logged_in? && @project.creator == current_user
-      if params[:name] != '' && params[:date] != ''
-        params.delete(:_method)
-        @project.update(params)
-        flash[:message] = 'Project has been updated.'
-        redirect "/projects/#{@project.id}"
-      else
-        redirect "/projects/#{@project.id}"
-      end
+    if @project.creator == current_user
+      #---AR: if empty string it will be ignored
+      params.delete(:_method)
+      @project.update(params)
+      flash[:message] = 'Project has been updated.'
+      redirect "/projects/#{@project.id}"
+
     else
       redirect '/'
     end
@@ -84,6 +81,9 @@ class ProjectsController < ApplicationController
   private
 
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.find_by(id: params[:id])
+    # find_by :id method
+    # find_by : unless you have error handling, find will raise an error if it doesn't find anything ; find_by will return nil if no error
+    # GOAL: error handling
   end
 end

@@ -27,3 +27,5 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 end
+
+### add helper method to check if current user owns that record , if not then redirect home page
