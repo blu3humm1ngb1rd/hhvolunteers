@@ -4,35 +4,35 @@
  <form action='/projects' method='post'>
 <div class='input-wrapper'>
 <label for='name'>Project Name: </label>
-<input type='text' name='name' value= ''/>
+<input type='text' name='name' value= '<%= @project.name %>'/>
 </div>
 
 <div class='input-wrapper'>
 <label for='role'>Volunteer Role: </label>
-<input type='text' name='role' value= ''/>
+<input type='text' name='role' value= '<%= @project.role %>'/>
 </div>
 
 <div class='input-wrapper'>
 <label for='date'>Date: </label>
-<input type='date' id="date" name='date' value= '' min='2020-08-01' max='2021-12-31'/>
+<input type='date' id="date" name='date' value= '<%= @project.date %>' min='2020-08-01' max='2021-12-31'/>
 </div>
 
 <div class='input-wrapper'>
 <label for='time'>Time: </label>
-<input type='text' name='time' value= ''/>
+<input type='text' name='time' value= '<%= @project.time %>'/>
 </div>
 
 <div class='input-wrapper'>
 <label for='number_of_hours'>Duration (in hours): </label>
-<input type='text' name='number_of_hours' value= ''/>
+<input type='text' name='number_of_hours' value= '<%= @project.number_of_hours %>'/>
 </div>
 
 <div class='input-wrapper'>
 <label for='assigned'>Assigned: </label>
-<input type='text' name='assigned' value= ''/>
+<input type='text' name='assigned' value= '<%= @project.assigned %>'/>
 </div>
 
 
 <input type='submit' value='Create' class='button'>
 </form>
- <>
+ 
